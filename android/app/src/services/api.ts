@@ -1,4 +1,6 @@
-export async function apiGet<T>(url: string) Promise<T> {
-    const res = await fetch(url)
-    
+export async function getApiResponse<T>(url: string): Promise<T> {
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+  return res.json();
 }
